@@ -1,5 +1,5 @@
-import requests
 import yt_dlp
+from security import safe_requests
 
 
 class YoutubeScraper:
@@ -46,7 +46,7 @@ class YoutubeScraper:
             subtitle_url = subtitle_list[0]["url"]
 
             # Download and return subtitle text
-            response = requests.get(subtitle_url)
+            response = safe_requests.get(subtitle_url)
             response.raise_for_status()
             events = response.json().get("events")
             subtitle_text = ""

@@ -4,6 +4,7 @@ from urllib.parse import urlparse
 
 import requests
 from langchain_community.document_loaders import PyMuPDFLoader
+from security import safe_requests
 
 
 class PyMuPDFScraper:
@@ -55,7 +56,7 @@ class PyMuPDFScraper:
                         "github.com", "raw.githubusercontent.com"
                     ).replace("/blob/", "/")
 
-                response = requests.get(pdf_url, timeout=5, stream=True)
+                response = safe_requests.get(pdf_url, timeout=5, stream=True)
                 response.raise_for_status()
 
                 with tempfile.NamedTemporaryFile(

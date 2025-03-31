@@ -1,9 +1,8 @@
 import os
 import re
 import urllib.parse
-
-import requests
 from tavily import TavilyClient
+from security import safe_requests
 
 
 class WebSearchTool:
@@ -45,7 +44,7 @@ class WebSearchTool:
         encoded_url = url + "?" + urllib.parse.urlencode(params)
         search_response = []
         try:
-            response = requests.get(encoded_url)
+            response = safe_requests.get(encoded_url)
             if response.status_code == 200:
                 search_results = response.json()
                 if search_results:
