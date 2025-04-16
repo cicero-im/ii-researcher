@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 
 from ..utils import clean_soup, extract_title, get_text_from_soup
 from .processing.scrape_skills import scrape_pdf_with_pymupdf
+import fickling
 
 FILE_DIR = Path(__file__).parent.parent
 
@@ -122,7 +123,7 @@ class BrowserScraper:
         """Load saved cookies before visiting the target URL"""
         cookie_file = Path(self.cookie_filename)
         if cookie_file.exists():
-            cookies = pickle.load(open(self.cookie_filename, "rb"))
+            cookies = fickling.load(open(self.cookie_filename, "rb"))
             for cookie in cookies:
                 self.driver.add_cookie(cookie)
         else:
