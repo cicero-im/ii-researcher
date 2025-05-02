@@ -46,7 +46,7 @@ class YoutubeScraper:
             subtitle_url = subtitle_list[0]["url"]
 
             # Download and return subtitle text
-            response = requests.get(subtitle_url)
+            response = requests.get(subtitle_url, timeout=60)
             response.raise_for_status()
             events = response.json().get("events")
             subtitle_text = ""

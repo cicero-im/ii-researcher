@@ -32,8 +32,8 @@ class FirecrawlScraper:
         }
         payload = {"url": self.link, "onlyMainContent": False, "formats": ["markdown"]}
         response = requests.request(
-            "POST", base_url, headers=headers, data=json.dumps(payload)
-        )
+            "POST", base_url, headers=headers, data=json.dumps(payload), 
+        timeout=60)
         if response.status_code == 200:
             data = response.json().get("data")
             return data.get("markdown", ""), data.get("metadata").get("title")
