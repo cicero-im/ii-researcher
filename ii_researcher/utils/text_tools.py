@@ -1,6 +1,6 @@
-import random
 import re
 from typing import List, TypeVar
+import secrets
 
 T = TypeVar("T")  # Generic type for lists with any element type
 
@@ -36,4 +36,4 @@ def choose_k(items: List[T], k: int) -> List[T]:
     k = min(k, len(items_copy))
 
     # Use random.sample for efficient random sampling without replacement
-    return random.sample(items_copy, k)
+    return secrets.SystemRandom().sample(items_copy, k)
