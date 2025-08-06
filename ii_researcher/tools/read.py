@@ -45,7 +45,7 @@ class WebSearchTool:
         encoded_url = url + "?" + urllib.parse.urlencode(params)
         search_response = []
         try:
-            response = requests.get(encoded_url)
+            response = requests.get(encoded_url, timeout=60)
             if response.status_code == 200:
                 search_results = response.json()
                 if search_results:
